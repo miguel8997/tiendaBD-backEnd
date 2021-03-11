@@ -1,6 +1,9 @@
 package cl.dci.dbtienda.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +15,9 @@ import java.util.Set;
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "correo")
         })
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
         @Id
@@ -30,6 +36,4 @@ public class Usuario {
         @JsonIgnoreProperties("usuario")
         private Set<Tienda> tiendas;
 
-        public Usuario() {
-        }
 }
