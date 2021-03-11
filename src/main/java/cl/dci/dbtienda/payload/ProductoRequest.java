@@ -1,46 +1,22 @@
-package cl.dci.dbtienda.modelo;
+package cl.dci.dbtienda.payload;
 
+import cl.dci.dbtienda.modelo.Categoria;
+import cl.dci.dbtienda.modelo.Tienda;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(	name = "producto")
-public class Producto {
+public class ProductoRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-
-    @NotBlank
-    @Size(max = 30)
     private String nombre;
-
     private int precio;
     private int cantidad;
-
-    @ManyToOne
-    @JoinColumn(name = "tienda_id")
-    @JsonIgnoreProperties("productos")
-    private Tienda tienda;
-
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    @JsonIgnoreProperties("productos")
-    private Categoria categoria;
-
-    public Producto() {
-    }
-
-    public Producto(@NotBlank @Size(max = 30) String nombre, int precio, int cantidad, Tienda tienda, Categoria categoria) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cantidad = cantidad;
-        this.tienda = tienda;
-        this.categoria = categoria;
-    }
+    private Long tienda;
+    private Long categoria;
 
     public Long getId() {
         return id;
@@ -74,19 +50,19 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public Tienda getTienda() {
+    public Long getTienda() {
         return tienda;
     }
 
-    public void setTienda(Tienda tienda) {
+    public void setTienda(Long tienda) {
         this.tienda = tienda;
     }
 
-    public Categoria getCategoria() {
+    public Long getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(Long categoria) {
         this.categoria = categoria;
     }
 }
