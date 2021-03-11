@@ -1,4 +1,4 @@
 package cl.dci.dbtienda.modelo;
 
-public class categoria {
+public class Categoria {
 }

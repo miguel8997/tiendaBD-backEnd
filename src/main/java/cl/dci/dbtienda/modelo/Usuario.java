@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
                 @UniqueConstraint(columnNames = "correo")
         })
 
-public class usuario {
+public class Usuario {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
