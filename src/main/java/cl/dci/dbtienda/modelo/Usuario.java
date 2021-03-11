@@ -1,16 +1,18 @@
 package cl.dci.dbtienda.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(	name = "usuario",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "correo")
         })
-
-public class usuario {
+public class Usuario {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +26,10 @@ public class usuario {
         @Size(max = 30)
         private String clave;
 
+        @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario_id")
+        @JsonIgnoreProperties("usuario")
+        private Set<Tienda> tiendas;
+
+        public Usuario() {
+        }
 }
