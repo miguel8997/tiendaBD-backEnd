@@ -1,9 +1,6 @@
 package cl.dci.dbtienda.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,9 +12,6 @@ import java.util.Set;
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "nombre")
         })
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Categoria {
 
     @Id
@@ -28,8 +22,38 @@ public class Categoria {
     @Size(max = 30)
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria_id")
-    @JsonIgnoreProperties("producto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+    @JsonIgnoreProperties("categoria")
     private Set<Producto> productos;
 
+    public Categoria() {
+    }
+
+    public Categoria(@NotBlank @Size(max = 30) String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Set<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Set<Producto> productos) {
+        this.productos = productos;
+    }
 }

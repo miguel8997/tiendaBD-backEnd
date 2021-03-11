@@ -1,7 +1,10 @@
 package cl.dci.dbtienda.repositorio;
 
 import cl.dci.dbtienda.modelo.Tienda;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface TiendaRepositorio extends CrudRepository<Tienda, Long> {
+@Repository
+public interface TiendaRepositorio extends JpaRepository<Tienda, Long> {
 }
